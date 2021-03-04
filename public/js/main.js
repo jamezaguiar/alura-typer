@@ -52,6 +52,7 @@ function initCronometro() {
       if (tempoRestante <= 0) {
         campoDigitacaoEl.attr('disabled', true);
         botaoReiniciarEl.attr('disabled', false);
+        campoDigitacaoEl.addClass('desativado');
         clearInterval(interval);
       }
     }, 1000);

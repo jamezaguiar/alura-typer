@@ -3,28 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <title>Alura Typer</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+    <link rel="stylesheet" href="css/libs/materialize.min.css" />
   </head>
   <body>
-    <h1>Alura Typer</h1>
-    <p class="frase">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia ea
-      laudantium tenetur id reprehenderit delectus modi, esse placeat.
-      Reprehenderit illo officia consequatur ex sint perferendis magnam
-      aspernatur non, aliquid eos.
-    </p>
+    <div class="container">
+      <h1 class="center">Alura Typer</h1>
+      <p class="frase center">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse impedit
+        enim, dolorum eaque deserunt vero culpa. Suscipit consequatur molestias
+        exercitationem quaerat modi odio dignissimos inventore, fuga nihil
+        numquam, sunt quibusdam!
+      </p>
 
-    <ul class="informacoes">
-      <li><span id="tamanho-frase">55</span> palavras</li>
-      <li><span id="tempo-digitacao">3</span> segundos</li>
-    </ul>
+      <ul class="informacoes center">
+        <li><span id="tamanho-frase">55</span> palavras</li>
+        <li><span id="tempo-digitacao">3</span> segundos</li>
+      </ul>
 
-    <textarea cols="40" rows="8" class="campo-digitacao"></textarea>
-    <button id="botao-reiniciar">Reiniciar</button>
+      <textarea cols="40" rows="8" class="campo-digitacao"></textarea>
+      <button id="botao-reiniciar">Reiniciar</button>
 
-    <ul>
-      <li><span id="contador-caracteres">0</span> caracteres</li>
-      <li><span id="contador-palavras">0</span> palavras</li>
-    </ul>
+      <ul>
+        <li><span id="contador-caracteres">0</span> caracteres</li>
+        <li><span id="contador-palavras">0</span> palavras</li>
+      </ul>
+    </div>
 
     <script src="js/jquery.js"></script>
     <script src="js/main.js"></script>
