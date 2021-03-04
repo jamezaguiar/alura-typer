@@ -5,6 +5,7 @@
     <title>Alura Typer</title>
     <link rel="stylesheet" href="css/estilos.css" />
     <link rel="stylesheet" href="css/libs/materialize.min.css" />
+    <link rel="stylesheet" href="css/libs/google-fonts.css" />
   </head>
   <body>
     <div class="container">
@@ -17,12 +18,23 @@
       </p>
 
       <ul class="informacoes center">
-        <li><span id="tamanho-frase">55</span> palavras</li>
-        <li><span id="tempo-digitacao">3</span> segundos</li>
+        <li>
+          <i class="small material-icons icones">description</i>
+          <span id="tamanho-frase">55</span> palavras
+        </li>
+        <li>
+          <i class="small material-icons icones">query_builder</i>
+          <span id="tempo-digitacao">3</span> segundos
+        </li>
       </ul>
 
       <textarea cols="40" rows="8" class="campo-digitacao"></textarea>
-      <button id="botao-reiniciar">Reiniciar</button>
+      <a
+        id="botao-reiniciar"
+        class="btn-floating btn-large waves-effect waves-light red"
+      >
+        <i class="material-icons">restore</i>
+      </a>
 
       <ul>
         <li><span id="contador-caracteres">0</span> caracteres</li>

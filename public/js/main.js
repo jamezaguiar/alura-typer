@@ -65,6 +65,7 @@ function initCronometro() {
 function restartGame() {
   $('#tempo-digitacao').text(tempoInicial);
   campoDigitacaoEl.attr('disabled', false);
+  campoDigitacaoEl.removeClass('desativado');
   campoDigitacaoEl.val('');
 
   contadorCaracteresEl.text('0');
