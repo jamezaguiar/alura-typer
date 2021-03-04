@@ -10,7 +10,8 @@ var numPalavrasFrase = fraseEl.split(' ').length;
 tamanhoFraseEl.text(numPalavrasFrase);
 
 campoDigitacaoEl.on('input', function () {
-  var numCaracteresDigitadas = campoDigitacaoEl.val().length;
+  var numCaracteresDigitadas = campoDigitacaoEl.val().replace(/\s+/g, '')
+    .length;
   var numPalavrasDigitadas = campoDigitacaoEl.val().split(/\S+/).length - 1;
 
   contadorCaracteresEl.text(numCaracteresDigitadas);
