@@ -1,4 +1,5 @@
 // Declaração de variáveis globais
+var frase = $('.frase').text().trim();
 var tempoInicial = $('#tempo-digitacao').text();
 var campoDigitacaoEl = $('.campo-digitacao');
 var contadorCaracteresEl = $('#contador-caracteres');
@@ -10,6 +11,7 @@ $(function () {
   initFrase();
   initContadores();
   initCronometro();
+  initMarcadores();
   botaoReiniciarEl.click(restartGame);
 });
 
@@ -17,10 +19,9 @@ $(function () {
  * Função que realiza a contagem do tamnho da frase.
  */
 function initFrase() {
-  var fraseEl = $('.frase').text();
-  var tamanhoFraseEl = $('#tamanho-frase');
-  var numPalavrasFrase = fraseEl.split(' ').length;
-  tamanhoFraseEl.text(numPalavrasFrase);
+  var tamanhoFrase = $('#tamanho-frase');
+  var numPalavrasFrase = frase.split(' ').length;
+  tamanhoFrase.text(numPalavrasFrase);
 }
 
 /**
@@ -59,6 +60,20 @@ function initCronometro() {
   });
 }
 
+function initMarcadores() {
+  campoDigitacaoEl.on('input', function () {
+    if (
+      frase.substr(0, campoDigitacaoEl.val().length) === campoDigitacaoEl.val()
+    ) {
+      campoDigitacaoEl.addClass('correto');
+      campoDigitacaoEl.removeClass('incorreto');
+    } else {
+      campoDigitacaoEl.addClass('incorreto');
+      campoDigitacaoEl.removeClass('correto');
+    }
+  });
+}
+
 /**
  * Função responsável por reiniciar o jogo.
  */
@@ -66,6 +81,8 @@ function restartGame() {
   $('#tempo-digitacao').text(tempoInicial);
   campoDigitacaoEl.attr('disabled', false);
   campoDigitacaoEl.removeClass('desativado');
+  campoDigitacaoEl.removeClass('correto');
+  campoDigitacaoEl.removeClass('incorreto');
   campoDigitacaoEl.val('');
 
   contadorCaracteresEl.text('0');
