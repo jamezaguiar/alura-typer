@@ -11,7 +11,7 @@ $(function () {
   initFrase();
   initContadores();
   initCronometro();
-  initMarcadores();
+  initBordas();
   botaoReiniciarEl.click(restartGame);
 });
 
@@ -51,16 +51,24 @@ function initCronometro() {
       $('#tempo-digitacao').text(tempoRestante);
 
       if (tempoRestante <= 0) {
-        campoDigitacaoEl.attr('disabled', true);
-        botaoReiniciarEl.attr('disabled', false);
-        campoDigitacaoEl.addClass('desativado');
         clearInterval(interval);
+        endGame();
       }
     }, 1000);
   });
 }
 
-function initMarcadores() {
+function endGame() {
+  campoDigitacaoEl.attr('disabled', true);
+  botaoReiniciarEl.attr('disabled', false);
+  campoDigitacaoEl.addClass('desativado');
+  insertPlacar();
+}
+
+/**
+ * Função responsável por inicializar as bordas dinâmicas do campo de digitação.
+ */
+function initBordas() {
   campoDigitacaoEl.on('input', function () {
     if (
       frase.substr(0, campoDigitacaoEl.val().length) === campoDigitacaoEl.val()
@@ -72,6 +80,24 @@ function initMarcadores() {
       campoDigitacaoEl.removeClass('correto');
     }
   });
+}
+
+/**
+ * Função responsável por gerenciar o placar do jogo.
+ */
+function insertPlacar() {
+  var tabela = $('.placar').find('tbody');
+  var usuario = 'Jamerson';
+  var numPalavras = contadorPalavrasEl.text();
+
+  var linha = `
+    <tr>
+      <td>${usuario}</td>
+      <td>${numPalavras}</td>
+    </tr>
+  `;
+
+  tabela.prepend(linha);
 }
 
 /**
