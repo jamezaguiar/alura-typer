@@ -83,7 +83,7 @@ function initBordas() {
 }
 
 /**
- * Função responsável por gerenciar o placar do jogo.
+ * Função responsável por inserir partidas no placar do jogo.
  */
 function insertPlacar() {
   var tabela = $('.placar').find('tbody');
@@ -94,10 +94,24 @@ function insertPlacar() {
     <tr>
       <td>${usuario}</td>
       <td>${numPalavras}</td>
+      <td>
+        <a href="#" class="botao-remover">
+          <i class="small material-icons">delete</i>
+        </a>
+      </td>
     </tr>
   `;
 
   tabela.prepend(linha);
+}
+
+function removePlacar() {
+  var botaoRemoverEl = $('.botao-remover');
+
+  botaoRemoverEl.click(function (event) {
+    event.preventDefault();
+    $(this).parent().parent().remove();
+  });
 }
 
 /**
