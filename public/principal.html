@@ -5,6 +5,7 @@
     <title>Alura Typer</title>
     <link rel="stylesheet" href="css/libs/materialize.min.css" />
     <link rel="stylesheet" href="css/libs/google-fonts.css" />
+    <link rel="stylesheet" href="css/libs/selectize.default.css" />
     <link rel="stylesheet" href="css/estilos.css" />
   </head>
   <body>
@@ -66,6 +67,15 @@
           Frase ID
           <input type="number" id="frase-id-input" min="0" />
         </label>
+
+        <div class="select-usuarios">
+          <select id="usuarios">
+            <option value="Douglas">Douglas</option>
+            <option value="Nico">Nico</option>
+            <option value="Flavio">Flavio</option>
+          </select>
+        </div>
+
         <a
           id="botao-sync"
           class="btn-floating btn-large waves-effect waves-light yellow"
@@ -98,5 +108,6 @@
     <script src="js/main.js"></script>
     <script src="js/placar.js"></script>
     <script src="js/frase.js"></script>
+    <script src="js/selectize.js"></script>
   </body>
 </html>
