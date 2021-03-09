@@ -1,12 +1,17 @@
 $('#botao-frase').click(fraseAleatoria);
 
 function fraseAleatoria() {
-  $.get('http://localhost:3000/frases', trocaFraseAleatoria).fail(function () {
-    $('#erro').show();
-    setTimeout(function () {
-      $('#erro').hide();
-    }, 3000);
-  });
+  $('#spinner').show();
+  $.get('http://localhost:3000/frases', trocaFraseAleatoria)
+    .fail(function () {
+      $('#erro').show();
+      setTimeout(function () {
+        $('#erro').hide();
+      }, 3000);
+    })
+    .always(function () {
+      $('#spinner').hide();
+    });
 }
 
 function trocaFraseAleatoria(data) {
