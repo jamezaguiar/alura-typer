@@ -44,7 +44,12 @@ function novoTr(usuario, numPalavras) {
 
   linha.find('.botao-remover').click(function (event) {
     event.preventDefault();
-    $(this).parent().parent().remove();
+    let placar = $(this).parent().parent();
+
+    placar.fadeOut(1000);
+    setTimeout(function () {
+      placar.remove();
+    }, 1000);
   });
 
   return linha;
