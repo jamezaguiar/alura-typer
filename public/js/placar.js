@@ -1,4 +1,5 @@
 $('#botao-placar').click(mostraPlacar);
+$('#botao-sync').click(sincronizaPlacar);
 
 function inserePlacar() {
   let corpoTabela = $('.placar').find('tbody');
@@ -54,6 +55,32 @@ function removeLinha() {
   setTimeout(function () {
     linha.remove();
   }, 1000);
+}
+
+function sincronizaPlacar() {
+  let placar = [];
+  let linhas = $('tbody > tr');
+
+  linhas.each(function () {
+    placar.push({
+      usuario: $(this).find('td:nth-child(1)').text(),
+      pontos: $(this).find('td:nth-child(2)').text(),
+    });
+  });
+
+  $('#spinner').show();
+  $.post('http://localhost:3000/placar', { placar }, function () {
+    alert('Placar sincronizado com sucesso!');
+  })
+    .fail(function () {
+      $('#erro').show();
+      setTimeout(function () {
+        $('#erro').hide();
+      }, 3000);
+    })
+    .always(function () {
+      $('#spinner').hide();
+    });
 }
 
 function mostraPlacar() {
