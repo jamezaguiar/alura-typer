@@ -17,7 +17,7 @@ function insertPlacar() {
  * Função responsável por mostrar ou não o placar.
  */
 function mostraPlacar() {
-  $('.placar').slideToggle(500);
+  $('.placar').stop().slideToggle(500);
 }
 
 /**
