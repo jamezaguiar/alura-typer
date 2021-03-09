@@ -1,26 +1,15 @@
-body {
-  overflow: scroll;
-}
-
-.frase,
 .campo-digitacao {
   font-size: 20px;
-}
-
-.campo-digitacao {
-  height: 120px;
+  height: 130px;
   border: 3px solid black;
 }
 
-.correto {
-  border: 3px solid green;
+.frase {
+  font-size: 20px;
+  text-align: left;
 }
 
-.incorreto {
-  border: 3px solid red;
-}
-
-.desativado {
+.campo-desativado {
   background-color: lightgray;
 }
 
@@ -28,6 +17,18 @@ body {
   vertical-align: middle;
 }
 
+.borda-verde {
+  border: 3px solid green;
+}
+
+.borda-vermelha {
+  border: 3px solid red;
+}
+
 .placar {
   display: none;
+}
+
+body {
+  overflow: scroll;
 }

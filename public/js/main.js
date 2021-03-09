@@ -1,100 +1,83 @@
-// Declaração de variáveis globais
-let frase = $('.frase').text().trim();
 let tempoInicial = $('#tempo-digitacao').text();
-let campoDigitacaoEl = $('.campo-digitacao');
-let contadorCaracteresEl = $('#contador-caracteres');
-let contadorPalavrasEl = $('#contador-palavras');
-let botaoReiniciarEl = $('#botao-reiniciar');
+let campo = $('.campo-digitacao');
 
-// Quando o documento estiver pronto, execute:
 $(function () {
-  initFrase();
-  initContadores();
-  initCronometro();
-  initBordas();
-  botaoReiniciarEl.on('click', restartGame);
+  atualizaTamanhoFrase();
+  inicializaContadores();
+  inicializaCronometro();
+  inicializaMarcadores();
+  $('#botao-reiniciar').click(reiniciaJogo);
 });
 
-/**
- * Função que realiza a contagem do tamanho da frase.
- */
-function initFrase() {
+function atualizaTamanhoFrase() {
+  let frase = $('.frase').text();
+  let numPalavras = frase.split(' ').length;
   let tamanhoFrase = $('#tamanho-frase');
-  let numPalavrasFrase = frase.split(' ').length;
-  tamanhoFrase.text(numPalavrasFrase);
+
+  tamanhoFrase.text(numPalavras);
 }
 
-/**
- * Função que inicializa os contadores de caracteres.
- */
-function initContadores() {
-  campoDigitacaoEl.on('input', function () {
-    let numCaracteresDigitadas = campoDigitacaoEl.val().replace(/\s+/g, '')
-      .length;
-    let numPalavrasDigitadas = campoDigitacaoEl.val().split(/\S+/).length - 1;
+function atualizaTempoInicial(tempo) {
+  tempoInicial = tempo;
+  $('#tempo-digitacao').text(tempo);
+}
 
-    contadorCaracteresEl.text(numCaracteresDigitadas);
-    contadorPalavrasEl.text(numPalavrasDigitadas);
+function inicializaContadores() {
+  campo.on('input', function () {
+    let conteudo = campo.val();
+
+    let qtdPalavras = conteudo.split(/\S+/).length - 1;
+    $('#contador-palavras').text(qtdPalavras);
+
+    let qtdCaracteres = conteudo.length;
+    $('#contador-caracteres').text(qtdCaracteres);
   });
 }
 
-/**
- * Função responsável gerenciar o tempo no jogo.
- */
-function initCronometro() {
-  let tempoRestante = $('#tempo-digitacao').text();
-  // Usando a função one, esse evento só será disparado uma vez.
-  campoDigitacaoEl.one('focus', function () {
-    botaoReiniciarEl.attr('disabled', true);
-    let interval = setInterval(function () {
+function inicializaMarcadores() {
+  campo.on('input', function () {
+    let frase = $('.frase').text();
+    let digitado = campo.val();
+    let comparavel = frase.substr(0, digitado.length);
+
+    if (digitado === comparavel) {
+      campo.addClass('borda-verde');
+      campo.removeClass('borda-vermelha');
+    } else {
+      campo.addClass('borda-vermelha');
+      campo.removeClass('borda-verde');
+    }
+  });
+}
+
+function inicializaCronometro() {
+  campo.one('focus', function () {
+    let tempoRestante = $('#tempo-digitacao').text();
+    let cronometroID = setInterval(function () {
       tempoRestante--;
       $('#tempo-digitacao').text(tempoRestante);
-
-      if (tempoRestante <= 0) {
-        clearInterval(interval);
-        endGame();
+      if (tempoRestante < 1) {
+        clearInterval(cronometroID);
+        finalizaJogo();
       }
     }, 1000);
   });
 }
 
-function endGame() {
-  campoDigitacaoEl.attr('disabled', true);
-  botaoReiniciarEl.attr('disabled', false);
-  campoDigitacaoEl.addClass('desativado');
-  insertPlacar();
+function finalizaJogo() {
+  campo.attr('disabled', true);
+  campo.toggleClass('campo-desativado');
+  inserePlacar();
 }
 
-/**
- * Função responsável por inicializar as bordas dinâmicas do campo de digitação.
- */
-function initBordas() {
-  campoDigitacaoEl.on('input', function () {
-    if (
-      frase.substr(0, campoDigitacaoEl.val().length) === campoDigitacaoEl.val()
-    ) {
-      campoDigitacaoEl.addClass('correto');
-      campoDigitacaoEl.removeClass('incorreto');
-    } else {
-      campoDigitacaoEl.addClass('incorreto');
-      campoDigitacaoEl.removeClass('correto');
-    }
-  });
-}
-
-/**
- * Função responsável por reiniciar o jogo.
- */
-function restartGame() {
+function reiniciaJogo() {
+  campo.attr('disabled', false);
+  campo.val('');
+  $('#contador-palavras').text(0);
+  $('#contador-caracteres').text(0);
   $('#tempo-digitacao').text(tempoInicial);
-  campoDigitacaoEl.attr('disabled', false);
-  campoDigitacaoEl.removeClass('desativado');
-  campoDigitacaoEl.removeClass('correto');
-  campoDigitacaoEl.removeClass('incorreto');
-  campoDigitacaoEl.val('');
-
-  contadorCaracteresEl.text('0');
-  contadorPalavrasEl.text('0');
-
-  initCronometro();
+  inicializaCronometro();
+  campo.toggleClass('campo-desativado');
+  campo.removeClass('borda-vermelha');
+  campo.removeClass('borda-verde');
 }
