@@ -41,3 +41,8 @@ body {
 #spinner {
   display: none;
 }
+
+#frase-id-input {
+  width: 50px;
+  text-align: center;
+}
