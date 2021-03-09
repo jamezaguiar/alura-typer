@@ -1,23 +1,38 @@
+let placarEl = $('.placar');
+
 $('#botao-placar').on('click', mostraPlacar);
 
 /**
  * Função responsável por inserir partidas no placar do jogo.
  */
 function insertPlacar() {
-  let tabela = $('.placar').find('tbody');
+  let tabela = placarEl.find('tbody');
   let usuario = 'Jamerson';
   let numPalavras = contadorPalavrasEl.text();
 
   let linha = novoTr(usuario, numPalavras);
 
   tabela.prepend(linha);
+
+  placarEl.slideDown(500);
+  scrollPlacar();
 }
 
 /**
  * Função responsável por mostrar ou não o placar.
  */
 function mostraPlacar() {
-  $('.placar').stop().slideToggle(500);
+  placarEl.stop().slideToggle(500);
+}
+
+function scrollPlacar() {
+  let posicaoPlacar = placarEl.offset().top;
+  $('html').animate(
+    {
+      scrollTop: posicaoPlacar + 'px',
+    },
+    1000
+  );
 }
 
 /**
