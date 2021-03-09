@@ -68,18 +68,20 @@ function sincronizaPlacar() {
     });
   });
 
-  $('#spinner').show();
   $.post('http://localhost:3000/placar', { placar }, function () {
-    alert('Placar sincronizado com sucesso!');
+    $('.tooltip')
+      .tooltipster('open')
+      .tooltipster('content', 'Sucesso ao sincronizar');
   })
     .fail(function () {
-      $('#erro').show();
-      setTimeout(function () {
-        $('#erro').hide();
-      }, 3000);
+      $('.tooltip')
+        .tooltipster('open')
+        .tooltipster('content', 'Falha ao sincronizar');
     })
     .always(function () {
-      $('#spinner').hide();
+      setTimeout(function () {
+        $('.tooltip').tooltipster('close');
+      }, 1500);
     });
 }
 
