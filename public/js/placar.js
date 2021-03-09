@@ -1,39 +1,39 @@
-$("#botao-placar").click(mostraPlacar);
+$('#botao-placar').click(mostraPlacar);
 
 function inserePlacar() {
-  let corpoTabela = $(".placar").find("tbody");
-  let usuario = "Jamerson";
-  let numPalavras = $("#contador-palavras").text();
+  let corpoTabela = $('.placar').find('tbody');
+  let usuario = 'Jamerson';
+  let numPalavras = $('#contador-palavras').text();
 
   let linha = novaLinha(usuario, numPalavras);
-  linha.find(".botao-remover").click(removeLinha);
+  linha.find('.botao-remover').click(removeLinha);
 
   corpoTabela.append(linha);
-  $(".placar").slideDown(500);
+  $('.placar').slideDown(500);
   scrollPlacar();
 }
 
 function scrollPlacar() {
-  let posicaoPlacar = $(".placar").offset().top;
-  $("body").animate(
+  let posicaoPlacar = $('.placar').offset().top;
+  $('body').animate(
     {
-      scrollTop: posicaoPlacar + "px",
+      scrollTop: posicaoPlacar + 'px',
     },
     1000
   );
 }
 
 function novaLinha(usuario, palavras) {
-  let linha = $("<tr>");
-  let colunaUsuario = $("<td>").text(usuario);
-  let colunaPalavras = $("<td>").text(palavras);
-  let colunaRemover = $("<td>");
+  let linha = $('<tr>');
+  let colunaUsuario = $('<td>').text(usuario);
+  let colunaPalavras = $('<td>').text(palavras);
+  let colunaRemover = $('<td>');
 
-  let link = $("<a>").addClass("botao-remover").attr("href", "#");
-  let icone = $("<i>")
-    .addClass("small")
-    .addClass("material-icons")
-    .text("delete");
+  let link = $('<a>').addClass('botao-remover').attr('href', '#');
+  let icone = $('<i>')
+    .addClass('small')
+    .addClass('material-icons')
+    .text('delete');
 
   link.append(icone);
 
@@ -57,5 +57,5 @@ function removeLinha() {
 }
 
 function mostraPlacar() {
-  $(".placar").stop().slideToggle(600);
+  $('.placar').stop().slideToggle(600);
 }
