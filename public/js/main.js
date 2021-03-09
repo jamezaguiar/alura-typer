@@ -12,11 +12,11 @@ $(function () {
   initContadores();
   initCronometro();
   initBordas();
-  botaoReiniciarEl.click(restartGame);
+  botaoReiniciarEl.on('click', restartGame);
 });
 
 /**
- * Função que realiza a contagem do tamnho da frase.
+ * Função que realiza a contagem do tamanho da frase.
  */
 function initFrase() {
   let tamanhoFrase = $('#tamanho-frase');
@@ -45,7 +45,7 @@ function initCronometro() {
   let tempoRestante = $('#tempo-digitacao').text();
   // Usando a função one, esse evento só será disparado uma vez.
   campoDigitacaoEl.one('focus', function () {
-    botaoReiniciarEl.attr('disabled', true);
+    botaoReiniciarEl.attr('disabled', 'true');
     let interval = setInterval(function () {
       tempoRestante--;
       $('#tempo-digitacao').text(tempoRestante);
@@ -59,8 +59,8 @@ function initCronometro() {
 }
 
 function endGame() {
-  campoDigitacaoEl.attr('disabled', true);
-  botaoReiniciarEl.attr('disabled', false);
+  campoDigitacaoEl.attr('disabled', 'true');
+  botaoReiniciarEl.attr('disabled', 'false');
   campoDigitacaoEl.addClass('desativado');
   insertPlacar();
 }
@@ -87,7 +87,7 @@ function initBordas() {
  */
 function restartGame() {
   $('#tempo-digitacao').text(tempoInicial);
-  campoDigitacaoEl.attr('disabled', false);
+  campoDigitacaoEl.attr('disabled', 'false');
   campoDigitacaoEl.removeClass('desativado');
   campoDigitacaoEl.removeClass('correto');
   campoDigitacaoEl.removeClass('incorreto');

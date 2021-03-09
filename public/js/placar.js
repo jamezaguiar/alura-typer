@@ -1,4 +1,4 @@
-$('#botao-placar').click(mostraPlacar);
+$('#botao-placar').on('click', mostraPlacar);
 
 /**
  * Função responsável por inserir partidas no placar do jogo.
@@ -23,7 +23,7 @@ function mostraPlacar() {
 /**
  * Função responsável por criar novos elementos de placar.
  * @param {string} usuario
- * @param {number} numPalavras
+ * @param {string} numPalavras
  */
 function novoTr(usuario, numPalavras) {
   let linha = $('<tr>');
@@ -42,7 +42,7 @@ function novoTr(usuario, numPalavras) {
   linha.append(colPalavras);
   linha.append(colRemover);
 
-  linha.find('.botao-remover').click(function (event) {
+  linha.find('.botao-remover').on('click', function (event) {
     event.preventDefault();
     let placar = $(this).parent().parent();
 
