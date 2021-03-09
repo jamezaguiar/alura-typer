@@ -1,28 +1,37 @@
+$('#botao-placar').click(mostraPlacar);
+
 /**
  * Função responsável por inserir partidas no placar do jogo.
  */
 function insertPlacar() {
-  var tabela = $('.placar').find('tbody');
-  var usuario = 'Jamerson';
-  var numPalavras = contadorPalavrasEl.text();
+  let tabela = $('.placar').find('tbody');
+  let usuario = 'Jamerson';
+  let numPalavras = contadorPalavrasEl.text();
 
-  var linha = novoTr(usuario, numPalavras);
+  let linha = novoTr(usuario, numPalavras);
 
   tabela.prepend(linha);
 }
 
 /**
+ * Função responsável por mostrar ou não o placar.
+ */
+function mostraPlacar() {
+  $('.placar').slideToggle(500);
+}
+
+/**
  * Função responsável por criar novos elementos de placar.
- * @param {Nome do usuário para ser inserido no placar} usuario
- * @param {Número de palavras digitadas pelo usuário} numPalavras
+ * @param {string} usuario
+ * @param {number} numPalavras
  */
 function novoTr(usuario, numPalavras) {
-  var linha = $('<tr>');
-  var colUsuario = $('<td>').text(usuario);
-  var colPalavras = $('<td>').text(numPalavras);
-  var colRemover = $('<td>');
-  var link = $('<a>').addClass('botao-remover').attr('href', '#');
-  var icone = $('<i>')
+  let linha = $('<tr>');
+  let colUsuario = $('<td>').text(usuario);
+  let colPalavras = $('<td>').text(numPalavras);
+  let colRemover = $('<td>');
+  let link = $('<a>').addClass('botao-remover').attr('href', '#');
+  let icone = $('<i>')
     .addClass('small')
     .addClass('material-icons')
     .text('delete');

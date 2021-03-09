@@ -1,10 +1,10 @@
 // Declaração de variáveis globais
-var frase = $('.frase').text().trim();
-var tempoInicial = $('#tempo-digitacao').text();
-var campoDigitacaoEl = $('.campo-digitacao');
-var contadorCaracteresEl = $('#contador-caracteres');
-var contadorPalavrasEl = $('#contador-palavras');
-var botaoReiniciarEl = $('#botao-reiniciar');
+let frase = $('.frase').text().trim();
+let tempoInicial = $('#tempo-digitacao').text();
+let campoDigitacaoEl = $('.campo-digitacao');
+let contadorCaracteresEl = $('#contador-caracteres');
+let contadorPalavrasEl = $('#contador-palavras');
+let botaoReiniciarEl = $('#botao-reiniciar');
 
 // Quando o documento estiver pronto, execute:
 $(function () {
@@ -19,8 +19,8 @@ $(function () {
  * Função que realiza a contagem do tamnho da frase.
  */
 function initFrase() {
-  var tamanhoFrase = $('#tamanho-frase');
-  var numPalavrasFrase = frase.split(' ').length;
+  let tamanhoFrase = $('#tamanho-frase');
+  let numPalavrasFrase = frase.split(' ').length;
   tamanhoFrase.text(numPalavrasFrase);
 }
 
@@ -29,9 +29,9 @@ function initFrase() {
  */
 function initContadores() {
   campoDigitacaoEl.on('input', function () {
-    var numCaracteresDigitadas = campoDigitacaoEl.val().replace(/\s+/g, '')
+    let numCaracteresDigitadas = campoDigitacaoEl.val().replace(/\s+/g, '')
       .length;
-    var numPalavrasDigitadas = campoDigitacaoEl.val().split(/\S+/).length - 1;
+    let numPalavrasDigitadas = campoDigitacaoEl.val().split(/\S+/).length - 1;
 
     contadorCaracteresEl.text(numCaracteresDigitadas);
     contadorPalavrasEl.text(numPalavrasDigitadas);
@@ -42,11 +42,11 @@ function initContadores() {
  * Função responsável gerenciar o tempo no jogo.
  */
 function initCronometro() {
-  var tempoRestante = $('#tempo-digitacao').text();
+  let tempoRestante = $('#tempo-digitacao').text();
   // Usando a função one, esse evento só será disparado uma vez.
   campoDigitacaoEl.one('focus', function () {
     botaoReiniciarEl.attr('disabled', true);
-    var interval = setInterval(function () {
+    let interval = setInterval(function () {
       tempoRestante--;
       $('#tempo-digitacao').text(tempoRestante);
 

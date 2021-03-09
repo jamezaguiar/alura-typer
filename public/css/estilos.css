@@ -1,3 +1,7 @@
+body {
+  overflow: scroll;
+}
+
 .frase,
 .campo-digitacao {
   font-size: 20px;
@@ -22,4 +26,8 @@
 
 .icones {
   vertical-align: middle;
+}
+
+.placar {
+  display: none;
 }
